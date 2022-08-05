@@ -84,13 +84,11 @@ fun EntryScreen() {
     }
 }
 
-@Composable
-fun GoTo(page: Class<*>) {
-    startActivity(
-        LocalContext.current,
-        Intent(LocalContext.current, page),
-        null
-    )
+fun goTo(context: Context, page: Class<*>) {
+    val intent = Intent(context, page).apply {
+        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    }
+    startActivity(context, intent, null)
 }
 
 @Composable
@@ -101,10 +99,11 @@ fun EntryRecyclerView() {
         Modifier.padding(AppDefaults.contentPadding)
     ) {
         items(Entries) { entry ->
+            val context = LocalContext.current
             Column(
                 Modifier
                     .animateItemPlacement()
-                    .clickable {  },
+                    .clickable { goTo(context, entry.clazz) },
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 entry.iconRes?.let {
