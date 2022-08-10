@@ -2,14 +2,10 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/music_graph"
-    app:startDestination="@id/KMMusicActivity">
+    app:startDestination="@id/musicFragment">
 
-    <activity
-        android:id="@+id/KMMusicActivity"
-        android:name="io.km.compose.ui.app.music.KMMusicActivity"
-        android:label="KMMusicActivity" />
     <fragment
-        android:id="@+id/KMPlayerFragment"
-        android:name="io.km.compose.ui.app.music.KMPlayerFragment"
+        android:id="@+id/musicFragment"
+        android:name="io.km.compose.ui.app.music.KMMusicFragment"
         android:label="KMPlayerFragment" />
 </navigation>

@@ -1,6 +1,7 @@
 package io.km.compose.ui.config
 
 import io.km.compose.ui.R
+import io.km.compose.ui.app.music.KMMusicActivity
 import io.km.compose.ui.app.news.KMNewsActivity
 
 /**
@@ -8,7 +9,7 @@ import io.km.compose.ui.app.news.KMNewsActivity
  */
 val Entries = arrayOf(
     Entry("News App", KMNewsActivity::class.java, iconLottieRes = R.raw.lottie_news),
-    Entry("Music App", KMNewsActivity::class.java, R.mipmap.ic_music_heart),
+    Entry("Music App", KMMusicActivity::class.java, R.mipmap.ic_music_heart),
     Entry("Instagram", KMNewsActivity::class.java, iconLottieRes = R.raw.lottie_instagram),
     Entry("Chat App", KMNewsActivity::class.java, R.mipmap.ic_chat),
 )
