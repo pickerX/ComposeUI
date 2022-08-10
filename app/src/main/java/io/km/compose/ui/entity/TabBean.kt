@@ -6,6 +6,7 @@ package io.km.compose.ui.entity
  * create on 2022/8/10
  */
 data class TabBean(
+    val id: Int,
     val title: String,
     val icon: Int? = null,
 )

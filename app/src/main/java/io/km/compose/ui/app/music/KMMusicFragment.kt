@@ -1,23 +1,23 @@
 package io.km.compose.ui.app.music
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.NavigateNext
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.stringResource
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -77,7 +77,35 @@ class KMMusicFragment : BaseFragment(R.layout.fragment_compose) {
                 )
             },
         ) { paddingValues ->
+
             MusicNavigation(Modifier.padding(paddingValues), navController)
+
+            MusicBottomPlayer()
+        }
+    }
+
+    @Composable
+    private fun MusicBottomPlayer() {
+        Box(
+            modifier = Modifier
+                .fillMaxHeight()
+                .fillMaxWidth(),
+            contentAlignment = Alignment.BottomStart
+        ) {
+            Row(
+                Modifier.padding(AppBarDefaults.ContentPadding),
+                verticalAlignment = Alignment.Bottom
+            ) {
+                Text(text = "musicName")
+
+                IconButton(onClick = { /*TODO*/ }) {
+                    Icon(Icons.Default.PlayArrow, contentDescription = "")
+                }
+                IconButton(onClick = { /*TODO*/ }) {
+                    Icon(Icons.Default.NavigateNext, contentDescription = "")
+                }
+
+            }
         }
     }
 

@@ -12,6 +12,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import io.km.compose.ui.LocalActivity
 import io.km.compose.ui.SystemViewModel
 import io.km.compose.ui.app.music.KMMusicViewModel
+import io.km.compose.ui.app.music.data.MusicUiState
 import io.km.compose.ui.entity.TabBean
 import io.km.compose.ui.utils.collectAsLifecycleAwareState
 
@@ -25,27 +26,19 @@ fun MusicHomeScreen(
     Scaffold(
         topBar = {},
     ) { paddingValues ->
-        val userTabs = uiState.userTabs
         Column(modifier = Modifier.padding(paddingValues)) {
-            if (userTabs.isNotEmpty()) {
-                var selectedTab by remember {
-                    mutableStateOf(
-                        uiState.selectedTab ?: userTabs.first()
-                    )
-                }
+            DynamicUserTabs(uiState) { tab ->
+                musicViewModel.cacheSelectedTab(tab)
+                when (tab.id) {
+                    0 -> {
 
-                MusicStyleTabs(
-                    modifier = Modifier.fillMaxWidth(),
-                    tabs = userTabs,
-                    selectedTab = selectedTab,
-                    onSelectedTabChanged = { tab ->
-                        selectedTab = tab
-                        musicViewModel.cacheSelectedTab(tab)
                     }
-                )
-            }
 
-            Text(text = "Home")
+                    1 -> {
+
+                    }
+                }
+            }
         }
     }
 
@@ -57,11 +50,33 @@ fun MusicHomeScreen(
 }
 
 @Composable
+fun DynamicUserTabs(uiState: MusicUiState, onSelectedTabChanged: (tab: TabBean) -> Unit) {
+    val userTabs = uiState.userTabs
+    if (userTabs.isNotEmpty()) {
+        var selectedTab by remember {
+            mutableStateOf(
+                uiState.selectedTab ?: userTabs.first()
+            )
+        }
+
+        MusicStyleTabs(
+            modifier = Modifier.fillMaxWidth(),
+            tabs = userTabs,
+            selectedTab = selectedTab,
+            onSelectedTabChanged = { tab ->
+                selectedTab = tab
+                onSelectedTabChanged(tab)
+            }
+        )
+    }
+}
+
+@Composable
 fun MusicStyleTabs(
     modifier: Modifier,
     tabs: List<TabBean>,
     selectedTab: TabBean,
-    onSelectedTabChanged: (language: TabBean) -> Unit,
+    onSelectedTabChanged: (tab: TabBean) -> Unit,
 ) {
     ScrollableTabRow(
         modifier = modifier.shadow(AppBarDefaults.TopAppBarElevation),

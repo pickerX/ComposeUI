@@ -25,8 +25,8 @@ class KMMusicViewModel : ViewModel() {
 
     init {
         _uiState.value.allTabs = mutableListOf(
-            TabBean("popular"),
-            TabBean("R&B"),
+            TabBean(0, "popular"),
+            TabBean(1, "R&B"),
         )
     }
 
@@ -36,8 +36,8 @@ class KMMusicViewModel : ViewModel() {
                 _uiState.value = _uiState.value.copy(isLoading = true)
 
                 val tabs = mutableListOf(
-                    TabBean("popular"),
-                    TabBean("R&B"),
+                    TabBean(0, "popular"),
+                    TabBean(1, "R&B"),
                 )
                 tabs
             }.onSuccess { tabs ->
