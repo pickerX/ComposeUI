@@ -28,7 +28,7 @@ import io.km.compose.ui.R
 import io.km.compose.ui.SystemViewModel
 import io.km.compose.ui.app.BaseFragment
 import io.km.compose.ui.app.Router
-import io.km.compose.ui.theme.ComposeUITheme
+import io.km.compose.ui.theme.MusicUITheme
 
 /**
  *
@@ -44,7 +44,7 @@ class KMMusicFragment : BaseFragment(R.layout.fragment_compose) {
         super.onViewCreated(view, savedInstanceState)
 
         view.findViewById<ComposeView>(R.id.compose_view).setContent {
-            ComposeUITheme(systemViewModel.isNightMode()) {
+            MusicUITheme(systemViewModel.isNightMode()) {
                 CompositionLocalProvider(LocalActivity provides requireActivity()) {
                     KMMusicScreen()
                 }
@@ -80,12 +80,12 @@ class KMMusicFragment : BaseFragment(R.layout.fragment_compose) {
 
             MusicNavigation(Modifier.padding(paddingValues), navController)
 
-            MusicBottomPlayer()
+            FloatingMusicPlayer()
         }
     }
 
     @Composable
-    private fun MusicBottomPlayer() {
+    private fun FloatingMusicPlayer() {
         Box(
             modifier = Modifier
                 .fillMaxHeight()

@@ -18,6 +18,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.rounded.Apps
 import androidx.compose.material.icons.rounded.Coffee
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -75,7 +76,7 @@ fun EntryScreen() {
     ComposeUITheme {
         Scaffold(
             scaffoldState = scaffoldState,
-            topBar = { ComposeToolbar("Compose UI", Icons.Rounded.Coffee) },
+            topBar = { ComposeToolbar("Compose UI", Icons.Rounded.Apps) },
             floatingActionButton = { HomeFAB(scope, scaffoldState) },
         ) {
             EntryRecyclerView()
