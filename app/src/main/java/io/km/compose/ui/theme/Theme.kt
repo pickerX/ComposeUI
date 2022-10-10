@@ -78,7 +78,7 @@ fun ComposeUITheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composa
 
     MaterialTheme(
         colors = colors,
-        typography = Typography,
+        typography = TextAppearance,
         shapes = Shapes,
         content = content
     )
@@ -150,5 +150,5 @@ private val MusicDarkColorPalette = darkColors(
 fun MusicUITheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val colors = if (darkTheme) MusicDarkColorPalette else MusicLightColorPalette
     Timber.d(">> darkTheme：${isSystemInDarkTheme()}")
-    MaterialTheme(colors = colors, typography = Typography, shapes = Shapes, content)
+    MaterialTheme(colors = colors, typography = TextAppearance, shapes = Shapes, content)
 }

@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -28,6 +29,7 @@ import io.km.compose.ui.R
 import io.km.compose.ui.SystemViewModel
 import io.km.compose.ui.app.BaseFragment
 import io.km.compose.ui.app.Router
+import io.km.compose.ui.theme.AppDefaults
 import io.km.compose.ui.theme.MusicUITheme
 
 /**
@@ -55,6 +57,7 @@ class KMMusicFragment : BaseFragment(R.layout.fragment_compose) {
     }
 
     @Composable
+    @Preview
     private fun KMMusicScreen() {
         val navController = rememberNavController()
         val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -77,34 +80,33 @@ class KMMusicFragment : BaseFragment(R.layout.fragment_compose) {
                 )
             },
         ) { paddingValues ->
-
             MusicNavigation(Modifier.padding(paddingValues), navController)
-
-            FloatingMusicPlayer()
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues),
+                verticalArrangement = Arrangement.Bottom
+            ) {
+                FloatingMusicPlayerBar()
+            }
         }
     }
 
     @Composable
-    private fun FloatingMusicPlayer() {
-        Box(
-            modifier = Modifier
-                .fillMaxHeight()
-                .fillMaxWidth(),
-            contentAlignment = Alignment.BottomStart
+    private fun FloatingMusicPlayerBar() {
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(AppDefaults.contentPadding),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Row(
-                Modifier.padding(AppBarDefaults.ContentPadding),
-                verticalAlignment = Alignment.Bottom
-            ) {
-                Text(text = "musicName")
+            Text(text = "hell-LinkedPark")
 
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(Icons.Default.PlayArrow, contentDescription = "")
-                }
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(Icons.Default.NavigateNext, contentDescription = "")
-                }
-
+            IconButton(onClick = { /*TODO*/ }) {
+                Icon(Icons.Default.PlayArrow, contentDescription = "")
+            }
+            IconButton(onClick = { /*TODO*/ }) {
+                Icon(Icons.Default.NavigateNext, contentDescription = "")
             }
         }
     }
